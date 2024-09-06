@@ -1045,21 +1045,16 @@ end,hpPanel5)
 
 addIcon("Mystic Full", {item=12685, movable=true, text = "Mystic Full"}, mysticfull)
 
-mystic60 = macro(50, "Defense/kai 60%", function()
-    if hppercent() <= 60 and not hasManaShield() then
+mystic60 = macro(100, "Defense/kai", function()
+    if hppercent() <= tonumber(storage.mystichp) and not hasManaShield() then
         say("mystic defense")
-    elseif hasManaShield() and (hppercent() >= 100 or manapercent() < 25) then
+    elseif hasManaShield() and (hppercent() >= tonumber(storage.mystichpkai) or manapercent() < 20) then
         say("mystic kai")
     end
 end,hpPanel5)
 
 addIcon("Def/kai", {item=672, movable=true, text = "Def/kai"}, mystic60)
 
-reflect = macro(5000, "Reflect", function()
-say('reflect')
-end,hpPanel5)
-
-addIcon("Reflect", {item=673, movable=true, text = "Reflect"}, reflect)
 
 UI.Label('TargetSay//Reflect',hpPanel5)
 UI.TextEdit(storage.saytarget or "Buffs", function(widget, newText)
