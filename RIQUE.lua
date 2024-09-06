@@ -961,8 +961,6 @@ color:setColor("green")
         UI.Separator(hpPanel2)
 Panels.HealthItem(hpPanel2)
         UI.Separator(hpPanel2)
-Panels.HealthItem(hpPanel2)
-        UI.Separator(hpPanel2)
 Panels.ManaItem(hpPanel2)
 
 TabBar:addTab("Speed", hpPanel3)
