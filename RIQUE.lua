@@ -1,5 +1,27 @@
 
 
+setDefaultTab("riq")
+
+
+UI.Button("[M] [A] [C] [R] [O] [S]", function(newText)
+    UI.MultilineEditorWindow(storage.ingame_hotkeys or "", {title="RIQUEZIN", description="Discord: riquezerah"}, function(text)
+      storage.ingame_hotkeys = text
+      reload()
+    end)
+  end)
+  
+  
+  for _, scripts in pairs({storage.ingame_hotkeys}) do
+    if type(scripts) == "string" and scripts:len() > 3 then
+      local status, result = pcall(function()
+        assert(load(scripts, "ingame_editor"))()
+      end)
+      if not status then 
+        error("Ingame edior error:\n" .. result)
+      end
+    end
+  end
+
 UI.Separator()
 
 if type(storage.manatrainer) ~= "table" then
