@@ -1097,7 +1097,7 @@ color:setColor("green")
 
 local spellName = storage.fuga
 local hpPercent = tonumber(storage.percent)
-macro(100, "1º Fuga", function()
+macro(100, "Primeira Fuga", function()
   if (hppercent() <= hpPercent) then
     say(spellName)
    end
@@ -1106,7 +1106,7 @@ end,hpPanel6)
 
 local spellName = storage.fuga2
 local hpPercent = tonumber(storage.percent2)
-macro(100, "2º Fuga", function()
+macro(100, "Segunda Fuga", function()
   if (hppercent() <= hpPercent) then
     say(spellName)
    end
@@ -1115,7 +1115,7 @@ end,hpPanel6)
 
 local spellName = storage.fuga3
 local hpPercent = tonumber(storage.percent3)
-macro(100, "3º Fuga", function()
+macro(100, "Terceira Fuga", function()
   if (hppercent() <= hpPercent) then
     say(spellName)
    end
