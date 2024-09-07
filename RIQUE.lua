@@ -866,6 +866,7 @@ end,rightPanel)
 UI.Separator()--------------INICIO PAINEL MACROS
 
 
+
 local PainelPanelName = "listt"
   local ui = setupUI([[
 Panel
@@ -925,6 +926,9 @@ hpPanel:setId("panelButtons") -- sets ID
 hpPanel7 = g_ui.createWidget("hpPanel") -- Creates Panel
 hpPanel:setId("panelButtons") -- sets ID
 
+hpPanel8 = g_ui.createWidget("hpPanel") -- Creates Panel
+hpPanel:setId("panelButtons") -- sets ID
+
 TabBar:addTab("HP", hpPanel)
         color= UI.Label()
 color:setColor("green")
@@ -944,7 +948,7 @@ for _, healingInfo in ipairs({storage.heal, storage.heal2}) do
     local hp = player:getHealthPercent()
     if healingInfo.max >= hp and hp >= healingInfo.min then
       if TargetBot then 
-        TargetBot.saySpell(healingInfo.text) 
+        TargetBot.saySpell(healingInfo.text) -- sync spell with targetbot if available
       else
         say(healingInfo.text)
       end
@@ -958,25 +962,19 @@ for _, healingInfo in ipairs({storage.heal, storage.heal2}) do
   end,hpPanel)
 end
 
-TabBar:addTab("UseIten", hpPanel2)
+TabBar:addTab("Use", hpPanel2)
         color= UI.Label()
 color:setColor("green")
-        color= UI.Label("UseIten",hpPanel2)
+        color= UI.Label("Use Items",hpPanel2)
 color:setColor("green")
         UI.Separator(hpPanel2)
 Panels.HealthItem(hpPanel2)
         UI.Separator(hpPanel2)
 Panels.ManaItem(hpPanel2)
 
-TabBar:addTab("Speed", hpPanel3)
+TabBar:addTab("Sup1", hpPanel3)
         color= UI.Label()
 color:setColor("green")
-        color= UI.Label("Relampago Marquinhos",hpPanel3)
-color:setColor("green")
- 
-Panels.Haste(hpPanel3)
-Panels.AntiParalyze(hpPanel3)
-
 
 UI.Label('Mode Barry Allen',hpPanel3):setColor('green')
 
@@ -991,6 +989,26 @@ macro(1, function()
         say(storage.hasteSpell);
     end
 end,hpPanel3)
+
+
+UI.Label('Magia Buff/Msg Laranja/Coldown',hpPanel3)
+
+UI.TextEdit(storage.buffzmagia or "Buffs", function(widget, newText)
+  storage.buffzmagia = newText
+end,hpPanel3)
+
+
+
+UI.TextEdit(storage.buffzmsg or "Buffsmsg", function(widget, newText)
+  storage.buffzmsg = newText
+end,hpPanel3)
+
+
+
+UI.TextEdit(storage.buffzcd or "Buffs", function(widget, newText)
+  storage.buffzcd = newText
+end,hpPanel3)
+
 
 TabBar:addTab("Combo", hpPanel4)
         color= UI.Label()
@@ -1027,7 +1045,7 @@ end
 
 
 
-TabBar:addTab("Suport", hpPanel5)
+TabBar:addTab("Sup2", hpPanel5)
         color= UI.Label()
 color:setColor("green")
         color= UI.Label("Suportes",hpPanel5)
@@ -1039,7 +1057,7 @@ local lastManaShield = 0
 mysticfull = macro(20, "Mystic Full", function() 
   if hasManaShield() or lastManaShield + 90000 > now then return end
   if TargetBot then 
-    TargetBot.saySpell(storage.manaShield) 
+    TargetBot.saySpell(storage.manaShield) -- sync spell with targetbot if available
   else
     say(storage.manaShield)
   end
@@ -1050,16 +1068,15 @@ end,hpPanel5)
 
 addIcon("Mystic Full", {item=12685, movable=true, text = "Mystic Full"}, mysticfull)
 
-mystic60 = macro(100, "Defense/kai", function()
-    if hppercent() <= tonumber(storage.mystichp) and not hasManaShield() then
+mystic60 = macro(50, "Defense/kai 60%", function()
+    if hppercent() <= 60 and not hasManaShield() then
         say("mystic defense")
-    elseif hasManaShield() and (hppercent() >= tonumber(storage.mystichpkai) or manapercent() < 20) then
+    elseif hasManaShield() and (hppercent() >= 100 or manapercent() < 25) then
         say("mystic kai")
     end
 end,hpPanel5)
 
 addIcon("Def/kai", {item=672, movable=true, text = "Def/kai"}, mystic60)
-
 
 UI.Label('TargetSay//Reflect',hpPanel5)
 UI.TextEdit(storage.saytarget or "Buffs", function(widget, newText)
@@ -1072,28 +1089,67 @@ UI.TextEdit(storage.reflect or "Buffs", function(widget, newText)
 end,hpPanel5)
 
 
-TabBar:addTab("Buffs", hpPanel6)
+TabBar:addTab("Fugas", hpPanel6)
         color= UI.Label()
 color:setColor("green")
+color= UI.Label("Macros Fugitivas:",hpPanel7)
+color:setColor("green")
 
-UI.Label('Magia Buff',hpPanel6)
-
-UI.TextEdit(storage.buffzmagia or "Buffs", function(widget, newText)
-  storage.buffzmagia = newText
+local spellName = storage.fuga
+local hpPercent = tonumber(storage.percent)
+macro(100, "1º Fuga", function()
+  if (hppercent() <= hpPercent) then
+    say(spellName)
+   end
 end,hpPanel6)
 
-UI.Label('Msg Laranja',hpPanel6)
 
-UI.TextEdit(storage.buffzmsg or "Buffsmsg", function(widget, newText)
-  storage.buffzmsg = newText
+local spellName = storage.fuga2
+local hpPercent = tonumber(storage.percent2)
+macro(100, "2º Fuga", function()
+  if (hppercent() <= hpPercent) then
+    say(spellName)
+   end
 end,hpPanel6)
 
-UI.Label('Coldown',hpPanel6)
 
-UI.TextEdit(storage.buffzcd or "Buffs", function(widget, newText)
-  storage.buffzcd = newText
+local spellName = storage.fuga3
+local hpPercent = tonumber(storage.percent3)
+macro(100, "3º Fuga", function()
+  if (hppercent() <= hpPercent) then
+    say(spellName)
+   end
 end,hpPanel6)
  
+
+TabBar:addTab("Fugas", hpPanel7)
+        color= UI.Label()
+color:setColor("green")
+        color= UI.Label("Storages Fugas:",hpPanel7)
+color:setColor("green")
+
+
+
+addTextEdit("fuga", storage.fuga or "fuga", function(widget, text) storage.fuga = text
+end,hpPanel7)
+
+addTextEdit("fuga", storage.percent or "50", function(widget, text) storage.percent = text
+end,hpPanel7)
+
+
+addTextEdit("fuga", storage.fuga2 or "fuga", function(widget, text) storage.fuga2 = text
+end,hpPanel7)
+
+addTextEdit("fuga", storage.percent2 or "50", function(widget, text) storage.percent2 = text
+end,hpPanel7)
+
+
+addTextEdit("fuga", storage.fuga3 or "fuga", function(widget, text) storage.fuga3 = text
+end,hpPanel7)
+
+addTextEdit("fuga", storage.percent3 or "50", function(widget, text) storage.percent3 = text
+end,hpPanel7)
+
 
   PainelsWindow.closeButton.onClick = function(widget)
     PainelsWindow:hide()
