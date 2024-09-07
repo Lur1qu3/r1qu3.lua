@@ -47,7 +47,13 @@ for _, healingInfos in ipairs({storage.manatrainer}) do
   end)
 end 
 
+UI.Separator()
 
+macro(250, "Dance", function()
+
+    turn(math.random(0, 3))
+
+ end, warTab)
 
 
 
