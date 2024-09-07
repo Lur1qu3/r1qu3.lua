@@ -217,7 +217,6 @@ onTalk(function(name, level, mode, text, channelId, pos)
 end)
 
 
-UI.Separator()
 
 UI.Separator()------------INICIO PAINEL TRAVEL
 
