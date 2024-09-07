@@ -33,7 +33,7 @@ for _, healingInfos in ipairs({storage.manatrainer}) do
     local mana = manapercent()
     if healingInfos.max <= mana and mana >= healingInfos.min then
       if TargetBot then 
-        TargetBot.saySpell(healingInfos.text) -- sync spell with targetbot if available
+        TargetBot.saySpell(healingInfos.text)
       else
         say(healingInfos.text)
       end
@@ -422,7 +422,7 @@ modules.game_interface.addMenuHook("category", "Painel de Magias",
   end
 )
 
--- available options for dest param
+
 local rightPanel = viajeWindow.content.right
 local leftPanel = viajeWindow.content.left
 
@@ -944,7 +944,7 @@ for _, healingInfo in ipairs({storage.heal, storage.heal2}) do
     local hp = player:getHealthPercent()
     if healingInfo.max >= hp and hp >= healingInfo.min then
       if TargetBot then 
-        TargetBot.saySpell(healingInfo.text) -- sync spell with targetbot if available
+        TargetBot.saySpell(healingInfo.text) 
       else
         say(healingInfo.text)
       end
@@ -1039,7 +1039,7 @@ local lastManaShield = 0
 mysticfull = macro(20, "Mystic Full", function() 
   if hasManaShield() or lastManaShield + 90000 > now then return end
   if TargetBot then 
-    TargetBot.saySpell(storage.manaShield) -- sync spell with targetbot if available
+    TargetBot.saySpell(storage.manaShield) 
   else
     say(storage.manaShield)
   end
