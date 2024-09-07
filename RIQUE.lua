@@ -1089,10 +1089,10 @@ UI.TextEdit(storage.reflect or "Buffs", function(widget, newText)
 end,hpPanel5)
 
 
-TabBar:addTab("Fugas", hpPanel6)
+TabBar:addTab("Fuga", hpPanel6)
         color= UI.Label()
 color:setColor("green")
-color= UI.Label("Macros Fugitivas:",hpPanel7)
+color= UI.Label("Macros Fugitivas:",hpPanel6)
 color:setColor("green")
 
 local spellName = storage.fuga
@@ -1122,10 +1122,10 @@ macro(100, "3º Fuga", function()
 end,hpPanel6)
  
 
-TabBar:addTab("Fugas", hpPanel7)
+TabBar:addTab("Strg", hpPanel7)
         color= UI.Label()
 color:setColor("green")
-        color= UI.Label("Storages Fugas:",hpPanel7)
+        color= UI.Label("Spell e Percent",hpPanel7)
 color:setColor("green")
 
 
