@@ -1122,7 +1122,7 @@ macro(100, "Terceira Fuga", function()
 end,hpPanel6)
  
 
-TabBar:addTab("Strg", hpPanel7)
+TabBar:addTab("Storag", hpPanel7)
         color= UI.Label()
 color:setColor("green")
         color= UI.Label("Spell e Percent",hpPanel7)
