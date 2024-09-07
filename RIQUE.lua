@@ -1164,7 +1164,7 @@ ui.editPainel.onClick = function(widget)
     PainelsWindow:focus()
   end
 
-UI.Separator()----------FIM DO PAINEL
+----------FIM DO PAINEL
 
 checkFrag = macro(100, function()
     say("!frags")
