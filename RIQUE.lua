@@ -22,7 +22,7 @@ UI.Button("[M] [A] [C] [R] [O] [S]", function(newText)
     end
   end
 
-UI.Separator()
+
 
 if type(storage.manatrainer) ~= "table" then
   storage.manatrainer = {on=false, title="mana%", text="Power Down", min=0, max=90}
@@ -47,7 +47,7 @@ for _, healingInfos in ipairs({storage.manatrainer}) do
   end)
 end 
 
-UI.Separator()
+
 
 macro(250, "Dance", function()
 
@@ -57,8 +57,23 @@ macro(250, "Dance", function()
 
 
 
+staminaRefinarEM = tonumber(storage.hora)
+idDaStamina = tonumber(storage.id)
 
-UI.Separator() 
+macro(50, 'Stamine', function()
+    if stamina() <= staminaRefinarEM * 60 then
+        useWith(idDaStamina, player)
+        return delay(500)
+    end
+end)
+
+local checkAol = storage.idDoAol
+macro(3000, "Comprar AOL", function()
+  if getFinger() and getFinger():getId(checkAol) then return end
+  say(storage.buyaol)
+end)
+
+
 followName = "autofollow"
 if not storage[followName] then storage[followName] = { player = 'name'} end
 local toFollowPos = {}
@@ -123,59 +138,17 @@ followTE = UI.TextEdit(storage[followName].player or "name", function(widget, ne
     storage[followName].player = newText
 end)
 
-UI.Separator()
-
-staminaRefinarEM = tonumber(storage.hora)
-idDaStamina = tonumber(storage.id)
-
-macro(50, 'Stamine', function()
-    if stamina() <= staminaRefinarEM * 60 then
-        useWith(idDaStamina, player)
-        return delay(500)
-    end
-end)
-UI.Label('Hora Pra usar')
-addTextEdit("hora", storage.hora or "usar em", function(widget, text) 
-storage.hora = text
-end)
-UI.Label('Id Da Stamina')
-addTextEdit("id", storage.id or "id stamina", function(widget, text) 
-storage.id = text
-end)
-
-
-local checkAol = storage.idDoAol
-macro(3000, "Comprar AOL", function()
-  if getFinger() and getFinger():getId(checkAol) then return end
-  say(storage.buyaol)
-end)
-UI.Label('id do aol')
-addTextEdit("idAOL", storage.idDoAol or "id do aol", function(widget, text) 
-storage.idDoAol = text
-end)
-UI.Label('!bol/!jam')
-addTextEdit("buyaol", storage.buyaol or "Comprar", function(widget, text) 
-storage.buyaol = text
-end)
 
 
 
-  UI.Separator()
-UI.Label('Magia Stack')
-
-addTextEdit("Magia Stack", storage.stackar or "Magia Stack", function(widget, text) 
-storage.stackar = text
-end)
 
 
-  UI.Separator()
-UI.Label('%Nocaute Area%')
 
-addTextEdit("Area1", storage.Area1 or "Area25%", function(widget, text) 
-storage.Area1 = text
-end)
 
-UI.Separator()
+
+
+
+
 
 
 ---
@@ -218,7 +191,7 @@ end)
 
 
 
-UI.Separator()------------INICIO PAINEL TRAVEL
+--INICIO PAINEL TRAVEL
 
 g_ui.loadUIFromString([[
 
@@ -863,7 +836,7 @@ UI.TextEdit(storage.cidades9 or "Cidade 9", function(widget, text)
 end,rightPanel)
 
 
-UI.Separator()--------------INICIO PAINEL MACROS
+--INICIO PAINEL MACROS
 
 
 
@@ -1163,8 +1136,7 @@ ui.editPainel.onClick = function(widget)
     PainelsWindow:raise()
     PainelsWindow:focus()
   end
-
-----------FIM DO PAINEL
+--FIM DO PAINEL
 
 checkFrag = macro(100, function()
     say("!frags")
