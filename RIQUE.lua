@@ -1060,15 +1060,6 @@ end,hpPanel5)
 
 addIcon("Mystic Full", {item=12685, movable=true, text = "Mystic Full"}, mysticfull)
 
-mystic60 = macro(100, "Mystic Defense/kai",  function()
-  if (hppercent() < castBelowHp and not hasManaShield()) then
-    say('Mystic Defense') 
-  end
-  if (hppercent() >= castBelowHp and hasManaShield()) then
-    say('Mystic Kai')
-  end
-end,hpPanel5)
-
 UI.Label('TargetSay//Reflect',hpPanel5)
 UI.TextEdit(storage.saytarget or "Buffs", function(widget, newText)
   storage.saytarget = newText
