@@ -1069,52 +1069,6 @@ mystic60 = macro(100, "Mystic Defense/kai",  function()
   end
 end,hpPanel5)
 
-setDefaultTab("Pve")
-local castBelowHp = 70
-local panelName = "codPan"
-local codPanel = setupUI([[
-Panel
-  id: healingPanel
-  height: 50
-  margin-top: 3
-
-  Label
-    id: label2
-    anchors.left: parent.left
-    anchors.right: parent.right
-    anchors.top: parent.top
-    margin: 0 5 0 5
-    text-align: center
-
-  HorizontalScrollBar
-    id: scroll1
-    anchors.left: parent.left
-    anchors.right: parent.right
-    anchors.top: prev.bottom
-    margin-top: 5
-    minimum: 1
-    maximum: 100
-    step: 1
-
-]])
-
-if not storage[panelName] then
-    storage[panelName] = {
-        hpPercent = castBelowHp 
-    }
-end
-    
-codPanel.scroll1.onValueChange = function(scroll, value)
-  castBelowHp = value 
-  storage[panelName].hpPercent = value 
-  codPanel.label2:setText("MYSTIC/KAI = " .. castBelowHp)
-end
-
-
-codPanel.scroll1:setValue(storage[panelName].hpPercent or castBelowHp)
-
-addIcon("Def/kai", {item=672, movable=true, text = "Def/kai"}, mystic60)
-
 UI.Label('TargetSay//Reflect',hpPanel5)
 UI.TextEdit(storage.saytarget or "Buffs", function(widget, newText)
   storage.saytarget = newText
