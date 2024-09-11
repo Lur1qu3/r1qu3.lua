@@ -1060,12 +1060,13 @@ end,hpPanel5)
 
 addIcon("Mystic Full", {item=12685, movable=true, text = "Mystic Full"}, mysticfull)
 
-mystic60 = macro(50, "Defense/kai 60%", function()
-    if hppercent() <= 60 and not hasManaShield() then
-        say("mystic defense")
-    elseif hasManaShield() and (hppercent() >= 100 or manapercent() < 25) then
-        say("mystic kai")
-    end
+mystic60 = macro(100, "Mystic Defense/kai",  function()
+  if (hppercent() < castBelowHp and not hasManaShield()) then
+    say('Mystic Defense') 
+  end
+  if (hppercent() >= castBelowHp and hasManaShield()) then
+    say('Mystic Kai')
+  end
 end,hpPanel5)
 
 addIcon("Def/kai", {item=672, movable=true, text = "Def/kai"}, mystic60)
