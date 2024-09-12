@@ -1,5 +1,3 @@
-
-
 setDefaultTab("riq")
 
 
